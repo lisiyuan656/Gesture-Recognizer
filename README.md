@@ -2,9 +2,7 @@
 Recognizes certain gestures made by a person's hands. Which gestures has not yet been decided.
 
 ## Authors
-Reid Fu
-Jiyuan Li
-Siyuan Li
+Reid Fu, Jiyuan Li, Siyuan Li
 
 ## Task Assignments
 Project will consist of 3 main parts: preprocessing, feature extraction, and classification.
@@ -22,3 +20,5 @@ Feature extraction will be divided and conquered as follows:
 Classification will be done using a neural net, which will be done by Reid Fu
 
 Data will be obtained from http://www.massey.ac.nz/~albarcza/gesture_dataset2012.html
+
+## Project Specification
