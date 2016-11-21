@@ -7,5 +7,13 @@ class ImageLoader():
         directory = 'data/part' + str(partNum)
         for img in os.listdir(directory):
             image = misc.imread(directory + '/' + img)
-            images.append(image)
+            element = (image, img.split('_')[1])
+            images.append(element)
         return images
+
+    def getData(self, num):
+        data = []
+        for i in range(num):
+            part = loadImages(i)
+            data = data + part
+        return data
