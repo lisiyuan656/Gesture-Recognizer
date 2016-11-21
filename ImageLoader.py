@@ -17,3 +17,12 @@ class ImageLoader():
             part = self.loadImages(i)
             data = data + part
         return data
+
+    def loadAllImage(self):
+        images = []
+        directory = 'handgesturedataset'
+        for img in os.listdir(directory):
+            image = misc.imread(directory + '/' + img)
+            element = (image, img.split('_')[1])
+            images.append(element)
+        return images
