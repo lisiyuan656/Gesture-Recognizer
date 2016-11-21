@@ -27,3 +27,12 @@ class ImageLoader():
     def loadData(self):
         input_file = open('dataset.pk', 'rb')
         return cPickle.load(input_file)
+
+    def loadAllImage(self):
+        images = []
+        directory = 'handgesturedataset'
+        for img in os.listdir(directory):
+            image = misc.imread(directory + '/' + img)
+            element = (image, img.split('_')[1])
+            images.append(element)
+        return images
