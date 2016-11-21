@@ -14,6 +14,6 @@ class ImageLoader():
     def getData(self, num):
         data = []
         for i in range(num):
-            part = loadImages(i)
+            part = self.loadImages(i)
             data = data + part
         return data
