@@ -20,8 +20,8 @@ class imageScaler :
         output = []
         try:
             for i in range(n):
-                scaledImage = self.__singleImageScaling(inputdata[i,0])
-                element = (scaledImage,inputdata[i,1])
+                scaledImage = self.__singleImageScaling(inputdata[i][0])
+                element = (scaledImage,inputdata[i][1])
                 output.append(element)
         except ValueError as e:
             print(e)
