@@ -1,6 +1,9 @@
 from scipy import ndimage
 
 class NoiseRemoval():
+    def Gaussian_filter_forImg(self, img, sig):
+        return ndimage.gaussian_filter(img, sigma=sig)
+
     def Gaussian_filter(self, data, sig):
         res = []
         for item in data:
