@@ -1,7 +1,7 @@
 import random
 from img_loading import ImageLoader
 from NoiseRemoval import NoiseRemoval
-from preprocessing import ImgSegmenter
+from preprocessing.img_segmenting import ImgSegmenter
 
 data = ImageLoader().getData(5)
 data_size = len(data)

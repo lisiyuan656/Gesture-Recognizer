@@ -19,9 +19,9 @@ class ImageLoader():
             element = (image, img.split('_')[1])
             images.append(element)
         return images
-    # Reads in image at path in grayscale
+    # Reads in image at path
     def loadImage(self, path):
-        image = ndimage.imread(path, mode='L')
+        image = ndimage.imread(path)
         return image
     
     # CURRENTLY UNUSED    

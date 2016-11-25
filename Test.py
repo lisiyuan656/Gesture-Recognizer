@@ -2,7 +2,7 @@
 import cv2
 import NoiseRemoval
 from scipy import ndimage
-from preprocessing import ImgSegmenter
+from img_segmenting.img_segmenting import ImgSegmenter
 from Interests import Interest_points
 import sys
 
