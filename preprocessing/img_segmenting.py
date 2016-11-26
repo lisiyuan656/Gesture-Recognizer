@@ -6,21 +6,22 @@ import numpy
 class ImgSegmenter():
     def __init__(self, diffThres):
         self.diffThres = diffThres
+    # Binarizes each image in imgSet using Otsu's method
+    def binarizeSet(self, imgSet):
+        binImgs = []
+        for img in imgSet:
+            binImg = self.backgroundSubtract(img)
+            binImgs.append(binImg)
+        return binImgs
     # Performs background subtraction to binarize img
     def backgroundSubtract(self, img):
         background = numpy.zeros(img.shape)
         diffImg = numpy.absolute(numpy.subtract(img, background)).astype('uint8')
         _,binImg = cv2.threshold(diffImg, self.diffThres, 255, cv2.THRESH_BINARY)
+        binImg = self.removeNoise(binImg)
         return binImg
-    
-    # Binarizes each image in imgSet using Otsu's method
-    def binarizeSet(self, imgSet):
-        binImgs = []
-        for img in imgSet: # Otsu threshold each image
-            self.binarizeImg(img)
-        return binImgs
-    # Binarizes image using Otsu's method
-    def binarizeImg(self, img):
-        grayImg = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        _, binImg = cv2.threshold(grayImg,0,255,cv2.THRESH_BINARY+cv2.THRESH_OTSU)
-        return binImg
+    # Do additional processing to remove holes in hand, etc
+    def removeNoise(self, img):
+        kernel = numpy.ones((3,3), numpy.uint8)
+        newImg = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
+        return newImg
