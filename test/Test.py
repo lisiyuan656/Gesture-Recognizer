@@ -2,7 +2,7 @@
 import cv2
 import NoiseRemoval
 from scipy import ndimage
-from img_segmenting.img_segmenting import ImgSegmenter
+from preprocessing.img_segmenting import ImgSegmenter
 from Interests import Interest_points
 import sys
 
@@ -11,9 +11,9 @@ print image_name
 image = ndimage.imread(image_name, mode='L')
 cv2.imshow('image', image)
 noise = NoiseRemoval.NoiseRemoval()
-imgseg = ImgSegmenter()
+imgseg = ImgSegmenter(5)
 interests = Interest_points()
-image_seg = imgseg.binarizeImg(image)
+image_seg = imgseg.backgroundSubtract(image)
 cv2.imshow('image_seg', image_seg)
 image_blur = noise.Gaussian_filter_forImg(image, 3)
 cv2.imshow('image_blur', image_blur)

@@ -36,3 +36,5 @@ These features will be used to build a neural network. The network will then eva
 - Euclidean distance between test image's PCA eigenvectors and mean PCA eigenvectors for each category
 - Euclidean distance between test image's interest point list and mean interest point list for each category
 - All of above will be converted into distance in standard deviations
+
+## Neural Network Architecture

@@ -1,12 +1,11 @@
 import random
 from img_loading import ImageLoader
 from NoiseRemoval import NoiseRemoval
-from preprocessing.img_segmenting import ImgSegmenter
+from preprocessing import segmenter
 
 data = ImageLoader().getData(5)
 data_size = len(data)
 data = NoiseRemoval().Gaussian_filter(data, 3)
-segmenter = ImgSegmenter()
 binData = segmenter.binarizeSet(data)
 
 random.shuffle(data)
