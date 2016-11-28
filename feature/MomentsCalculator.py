@@ -1,8 +1,8 @@
 import cv2
 import math
 
-class MomentsCalculator:
-    
+class MomentsCalculator():
+
     def ImageMoments(self,inputimage):
         M = cv2.moments(inputimage)
         eta02 = M['mu02']/math.pow(M['m00'],2)
@@ -13,8 +13,8 @@ class MomentsCalculator:
         eta21 = M['mu21']/math.pow(M['m00'],2.5)
         eta30 = M['mu30']/math.pow(M['m00'],2.5)
         return (eta02,eta03,eta11,eta12,eta20,eta21,eta30)
-        
-    
+
+
     def Moments(self,inputdata):
         n = len(inputdata)
         output = []
