@@ -9,7 +9,7 @@ tar = y.reshape(size,1)
 
 # Input is in range [-7,7]. Input layer has 1 neuron.
 # Hidden layer has 5 neurons. Output layer has 1 neuron.
-net = nl.net.newff([[-7, 7]],[5, 1])
+net = nl.net.newff([[-100, 100]],[5, 1])
 error = net.train(inp, tar, epochs=500, show=100, goal=0.02)
 out = net.sim(inp)
 
