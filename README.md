@@ -37,4 +37,9 @@ These features will be used to build a neural network. The network will then eva
 - Euclidean distance between test image's interest point list and mean interest point list for each category
 - All of above will be converted into distance in standard deviations
 
+Means and variances will be calculated outside of the neural network.
+
 ## Neural Network Architecture
+- Input vector will be (36n+7+1) x 1, where n = number of eigenvectors chosen from PCA
+- Output vector is 36 x 1 float vector, where first 10 slots correspond with digits in order. Remaining slots correspond to letters in order.
+- Use multi-layer perceptron

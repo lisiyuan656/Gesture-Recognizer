@@ -2,6 +2,7 @@ import cv2
 import numpy
 from scipy import linalg
 
+# Precondition for all methods: passed image is in grayscale
 class PCA(object):
     def __init__(self, basisDim):
         self.basisDim = basisDim
