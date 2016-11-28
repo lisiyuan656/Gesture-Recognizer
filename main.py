@@ -9,7 +9,7 @@ data = ImageLoader().getData(5)
 data_size = len(data)
 data = imageScaler().scaleDataset(data) # rescale the images
 data = NoiseRemoval().Gaussian_filter(data, 3) # blur the images
-binData = ImgSegmenter().binarizeSet(data) # segment the images
+binData = ImgSegmenter(5).binarizeSet(data) # segment the images
 
 random.shuffle(data)
 train_data_size = 2000
@@ -32,8 +32,8 @@ for i in range(10):
     if count!=0:
         temp = temp / count
     eigenvectors[i]=temp
-    
-    
+
+
 for i in range(26):
     curchar = chr(i+97)
     temp = numpy.zeros((590,15))

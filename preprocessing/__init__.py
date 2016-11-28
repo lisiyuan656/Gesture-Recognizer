@@ -1,6 +1,6 @@
 from preprocessing.img_segmenting import ImgSegmenter
-from preprocessing import NoiseRemoval
-from preprocessing import imageScaler
+from preprocessing.NoiseRemoval import NoiseRemoval
+from preprocessing.imageScaler import imageScaler
 
 noise_remover = NoiseRemoval()
 img_scaler = imageScaler()

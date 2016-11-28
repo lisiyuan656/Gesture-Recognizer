@@ -1,6 +1,6 @@
 from feature.pca import PCA
 from feature.Interests import Interest_points
-from feature import MomentsCalculator
+from feature.MomentsCalculator import MomentsCalculator
 
 NUM_EVECTS_PCA = 2
 pc_analyzer = PCA(NUM_EVECTS_PCA)

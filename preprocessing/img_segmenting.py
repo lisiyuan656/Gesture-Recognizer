@@ -2,7 +2,6 @@ import cv2
 import numpy
 
 # Precondition for each method: image(s) are in grayscale
-# TODO: Gave up on Otsu thresholding. Do background subtraction instead.
 class ImgSegmenter():
     def __init__(self, diffThres):
         self.diffThres = diffThres
@@ -10,8 +9,8 @@ class ImgSegmenter():
     def binarizeSet(self, imgSet):
         binImgs = []
         for img in imgSet:
-            binImg = self.backgroundSubtract(img)
-            binImgs.append(binImg)
+            binImg = self.backgroundSubtract(img[0])
+            binImgs.append((binImg, img[1]))
         return binImgs
     # Performs background subtraction to binarize img
     def backgroundSubtract(self, img):
