@@ -16,3 +16,32 @@ train_data_size = 2000
 training_data = data[1:train_data_size+1]
 training_x, training_y = process_data().process_data(training_data)
 testing_data = data[train_data_size+1:]
+
+
+
+# Calculate eigenvectors
+eigenvectors = numpy.zeros((36,15,590))
+for i in range(10):
+    curchar = chr(i+48)
+    temp = numpy.zeros((590,15))
+    count = 0
+    for tuple in data:
+        if tuple[1]==curchar:
+            temp = temp + PCA(tuple[0])
+            count = count + 1
+    if count!=0:
+        temp = temp / count
+    eigenvectors[i]=temp
+    
+    
+for i in range(26):
+    curchar = chr(i+97)
+    temp = numpy.zeros((590,15))
+    count = 0
+    for tuple in data:
+        if tuple[1]==curchar:
+            temp = temp + PCA(tuple[0])
+            count = count + 1
+    if count!=0:
+        temp = temp / count
+    eigenvectors[i+10]=temp
