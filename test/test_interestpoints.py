@@ -1,9 +1,9 @@
 """ Method to test: python Test.py imageName """
 import cv2
-import NoiseRemoval
+import preprocessing.NoiseRemoval
 from scipy import ndimage
 from preprocessing.img_segmenting import ImgSegmenter
-from Interests import Interest_points
+from feature.Interests import Interest_points
 import sys
 
 image_name = str(sys.argv[1])

@@ -29,12 +29,12 @@ To get the silhouette, we plan to use background subtraction. This method will g
 The following information will be obtained from the training set:
 - Mean and variance in medial axis transform for each gesture category
 - Mean axes and variances in PCA eigenvectors for each gesture category
-- Mean and variance of each interest point in list for each gesture category. List length is minimum in training set.
+- The interest points detected by the FAST algorithm on segmented images
 
 These features will be used to build a neural network. The network will then evaluate test images based on:
-- Euclidean distance between test image's medial axis transform and mean medial axis transform for each category
+- The first 7 similitude moments of segmented images
 - Euclidean distance between test image's PCA eigenvectors and mean PCA eigenvectors for each category
-- Euclidean distance between test image's interest point list and mean interest point list for each category
+- The number of interest points detected by the FAST algorithm on segmented images
 - All of above will be converted into distance in standard deviations
 
 ## Neural Network Architecture
