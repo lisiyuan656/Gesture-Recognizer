@@ -1,10 +1,10 @@
 import numpy
 
-class imageScaler():
-
+class imageScaler :
+    
     height = 660
     width = 590
-
+    
     def singleImageScaling(self,inputimage):
         m = len(inputimage)
         n = len(inputimage[0])
@@ -13,8 +13,8 @@ class imageScaler():
         output = numpy.zeros((self.height,self.width),dtype=numpy.uint8)
         output[(self.height-m)/2:(self.height+m)/2,(self.width-n)/2:(self.width+n)/2] = inputimage
         return output
-
-
+        
+        
     def scaleDataset(self,inputdata):
         n = len(inputdata)
         output = []
