@@ -21,10 +21,10 @@ class ImageLoader():
         return images
     # Reads in image at path
     def loadImage(self, path):
-        image = ndimage.imread(path)
+        image = ndimage.imread(path, mode='L')
         return image
-    
-    # CURRENTLY UNUSED    
+
+    # CURRENTLY UNUSED
     def dumpData(self, data):
         output = open('dataset.pk', 'wb')
         cPickle.dump(data, output)
