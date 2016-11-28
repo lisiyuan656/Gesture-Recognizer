@@ -3,7 +3,7 @@ import math
 
 class MomentsCalculator:
     
-    def __ImageMoments(self,inputimage):
+    def ImageMoments(self,inputimage):
         M = cv2.moments(inputimage)
         eta02 = M['mu02']/math.pow(M['m00'],2)
         eta03 = M['mu03']/math.pow(M['m00'],2.5)
@@ -19,6 +19,6 @@ class MomentsCalculator:
         n = len(inputdata)
         output = []
         for i in range(n):
-            tempmoments = self.__ImageMoments(inputdata[i][0])
+            tempmoments = self.ImageMoments(inputdata[i][0])
             output.append(tempmoments)
         return output
