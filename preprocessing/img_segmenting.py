@@ -10,7 +10,7 @@ class ImgSegmenter():
     def binarizeSet(self, imgSet):
         binImgs = []
         for img in imgSet:
-            binImg = self.backgroundSubtract(img)
+            binImg = self.backgroundSubtract(img[0])
             binImgs.append(binImg)
         return binImgs
     # Performs background subtraction to binarize img
