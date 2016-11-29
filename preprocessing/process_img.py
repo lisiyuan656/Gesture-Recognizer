@@ -7,10 +7,10 @@ from feature.Interests import Interest_points
 
 def process_img(img, basisDim, data_mean_evecs):
     res = np.array([])
-    evecs = PCA(basisDim).getEigVecs(img)
+    eigenvecs = PCA(basisDim).getEigVecs(img)
     for i in range(basisDim):
         for j in range(36):
-            dis = np.linalg.norm(np.evecs[:,i]-data_mean_evecs[j,:,i])
+            dis = np.linalg.norm(eigenvecs[:,i]-data_mean_evecs[j,:,i])
             res = np.append(res, dis)
     res = np.append(res, np.asarray(MomentsCalculator().ImageMoments(img)))
     res = np.append(res, Interest_points().fast_feature(img))
