@@ -19,7 +19,7 @@ class NeuralNet():
     thres -- Stop training if this threshold is reached
     """
     def train(self, train_patts, train_outs, epochs, thres):
-        error = self.net.train_gd(train_patts, train_outs, epochs=epochs, show=100, goal=thres)
+        error = self.net.train(train_patts, train_outs, epochs=epochs, show=100, goal=thres)
         return error
     """ Wrapper for Neurolab's sim method
     Parameters:
