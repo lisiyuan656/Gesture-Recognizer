@@ -16,5 +16,6 @@ train_data_size = 2000
 train_data = data[0:train_data_size]
 testing_data = data[train_data_size:]
 # Initialize features in training set
-mean_eigenvectors = pc_analyzer.calculate_mean(train_data)
-train_x, train_y = process_data().process_data(train_data)
+category_order = [str(i) for i in range(0,10)] + [j for j in range('a','z')]
+mean_eigenvectors = pc_analyzer.calculate_mean(train_data, category_order)
+train_x, train_y = process_data().process_data(train_data, mean_eigenvectors)
