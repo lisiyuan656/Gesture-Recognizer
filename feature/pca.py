@@ -33,22 +33,28 @@ class PCA(object):
             num = num + 1
         self.basisDim = orig_basisDim
         return means
-    """ Calculate mean eigenvectors for all gesture categories
-    Assumes that data is grouped by gesture category, and elements are tuples of image and label
+    """ Calculate mean eigenvectors of training set for all gesture categories
+    Assumes that data elements are tuples of image and label
+    Parameters:
+    training_set -- training set for which to calculate mean eigenvectors
+    category_order -- order of categories for returned list
     Returns: list of ndarrays of eigenvectors for each class
     """
-    def calculate_mean(self, training_set):
+    def calculate_mean(self, training_set, category_order):
         means = []
-        category_set = []
-        cur_label = training_set[0][1]
-        count = 0
-        for pattern in training_set:
-            if pattern[1] == cur_label:
-                category_set.append(pattern[0])
-            # If switching categories or pattern is last one, calculate mean eigenvectors
-            if pattern[1] != cur_label or count == len(training_set)-1:
-                category_means = self.calcMeanEigvects(category_set)
-                means.append(category_means)
-                category_set = []
-            count = count + 1
+        category_sets = self.categorizePatterns(training_set)
+        for category in category_order:
+            category_means = self.calcMeanEigvects(category_sets[category])
+            means.append(category_means)
         return means
+    """ Sorts training patterns into categories
+    Assumes that patterns are tuples of image and label
+    """
+    def categorizePatterns(self, patterns):
+        category_sets = {} # map of category label to category set
+        for pattern in patterns:
+            if pattern[1] in category_sets:
+                category_sets[pattern[1]].append(pattern[0])
+            else:
+                category_sets[pattern[1]] = [pattern[0]]
+        return category_sets
