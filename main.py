@@ -19,35 +19,8 @@ training_data = data[1:train_data_size+1]
 # Calculate eigenvectors
 
 basisDim = 15
-mean_eigenvectors = np.zeros((36,590,basisDim))
-mean_eigenvectors = calculate_mean(training_data)
-""" input is the training_data, formated the same as data
-    output should be a ndarray of dim (36, 590, basisDim)
-    code below doesn't work, but should be helpful
-"""
-"""
-for i in range(10):
-    curchar = chr(i+48)
-    temp = np.zeros((590,15))
-    count = 0
-    for tuple in training_data:
-        if tuple[1]==curchar:
-            temp = temp + PCA(tuple[0])
-            count = count + 1
-    if count!=0:
-        temp = temp / count
-    eigenvectors[i]=temp
-for i in range(26):
-    curchar = chr(i+97)
-    temp = np.zeros((590,15))
-    count = 0
-    for tuple in training_data:
-        if tuple[1]==curchar:
-            temp = temp + PCA(tuple[0])
-            count = count + 1
-    if count!=0:
-        temp = temp / count
-    eigenvectors[i+10]=temp
-"""
-training_x, training_y = process_data().process_data(training_data)
+""" calculate mean_eigenvectors """
+#mean_eigenvectors = calculate_mean(training_data)
+
+training_x, training_y = process_data().process_data(training_data, basisDim, mean_eigenvectors)
 testing_data = data[train_data_size+1:]
