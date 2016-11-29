@@ -1,6 +1,7 @@
 import cv2
 import numpy
 from scipy import linalg
+from __builtin__ import int
 
 # Precondition for all methods: passed image is in grayscale
 class PCA(object):
@@ -24,7 +25,7 @@ class PCA(object):
         num = 0 # number of images processed
         for img in train_category:
             eigVects = self.getEigVecs(img)
-            if means == -1:
+            if num == 0:
                 means = eigVects
             else:
                 for i in range(0,MAX_NUM_EIGVECTS):
