@@ -28,6 +28,6 @@ train_x = train_x.reshape(len(train_x), 1)
 train_y = train_y.reshape(len(train_y), 1)
 # Initialize and train neural net
 input_size = 36*basisDim + 7 + 1
-nn = NeuralNet(input_size, 36)
+nn = NeuralNet((input_size, 36))
 error = nn.train(train_x, train_y, 500, 0.05)
 output = nn.predict(test_data)
