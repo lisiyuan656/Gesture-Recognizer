@@ -1,3 +1,4 @@
+import numpy
 def process_label(label):
   output_y = numpy.zeros((36,1))
   if ord(label)<58:

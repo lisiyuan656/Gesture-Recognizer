@@ -1,5 +1,6 @@
 import numpy as np
 import process_img
+import process_label
 
 def process_data(dataset, basisDim, mean_eigenvectors):
     training_x = np.array([])
