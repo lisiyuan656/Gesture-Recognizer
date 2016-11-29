@@ -15,10 +15,8 @@ random.shuffle(data)
 train_data_size = 2000
 training_data = data[1:train_data_size+1]
 
-
 # Calculate eigenvectors
-# mean_eigenvectors = np.zeros((36,15,590))
-# mean_eigenvectors = calculate_mean(training_data)
+mean_eigenvectors = pc_analyzer.calculate_mean(training_data)
 """ input is the training_data, formated the same as data
     output should be a ndarray of dim (36, 590, basisDim)
     code below doesn't work, but should be helpful
