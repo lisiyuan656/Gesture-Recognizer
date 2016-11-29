@@ -1,17 +1,15 @@
 import random
 from img_loading import ImageLoader
-from preprocessing.NoiseRemoval import NoiseRemoval
-from preprocessing.img_segmenting import ImgSegmenter
-from preprocessing.imageScaler import imageScaler
+from preprocessing import noise_remover, img_scaler, segmenter
 from preprocessing.process_data import process_data
 import numpy as np
-from feature.pca import PCA
+from feature import pc_analyzer
 
 data = ImageLoader().getData(5)
 data_size = len(data)
-data = imageScaler().scaleDataset(data) # rescale the images
-data = NoiseRemoval().Gaussian_filter(data, 3) # blur the images
-binData = ImgSegmenter(5).binarizeSet(data) # segment the images
+data = img_scaler.scaleDataset(data) # rescale the images
+data = noise_remover.Gaussian_filter(data, 3) # blur the images
+binData = segmenter.binarizeSet(data) # segment the images
 
 random.shuffle(data)
 train_data_size = 2000
@@ -19,8 +17,8 @@ training_data = data[1:train_data_size+1]
 
 
 # Calculate eigenvectors
-mean_eigenvectors = np.zeros((36,15,590))
-mean_eigenvectors = calculate_mean(training_data)
+# mean_eigenvectors = np.zeros((36,15,590))
+# mean_eigenvectors = calculate_mean(training_data)
 """ input is the training_data, formated the same as data
     output should be a ndarray of dim (36, 590, basisDim)
     code below doesn't work, but should be helpful
