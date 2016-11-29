@@ -20,7 +20,7 @@ training_data = data[1:train_data_size+1]
 
 # Calculate eigenvectors
 basisDim = 15
-mean_eigenvectors = np.zeros((36,590,15))
+mean_eigenvectors = np.zeros((36,590,basisDim))
 mean_eigenvectors = calculate_mean(training_data)
 """ input is the training_data, formated the same as data
     output should be a ndarray of dim (36, 590, basisDim)
