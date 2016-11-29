@@ -8,8 +8,8 @@ class NeuralNet():
     """
     def __init__(self, num_neurons_layer):
         MAX_FEATURE_VALUE = 100
-        minMax = [[0, MAX_FEATURE_VALUE] for _ in range(1,num_neurons_layer[0]+1)]
-        num_neurons_layer = num_neurons_layer[1:len(num_neurons_layer)]
+        minMax = [[0, MAX_FEATURE_VALUE]]*num_neurons_layer[0]
+        num_neurons_layer = num_neurons_layer[1:]
         self.net = nl.net.newff(minMax, num_neurons_layer)
     """ Wrapper for Neurolab's train method
     Parameters:
