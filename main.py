@@ -1,4 +1,5 @@
 import random
+import string
 from img_loading import ImageLoader
 from preprocessing import noise_remover, img_scaler, segmenter
 from preprocessing.process_data import process_data
@@ -16,6 +17,6 @@ train_data_size = 2000
 train_data = data[0:train_data_size]
 testing_data = data[train_data_size:]
 # Initialize features in training set
-category_order = [str(i) for i in range(0,10)] + [j for j in range('a','z')]
+category_order = [str(i) for i in range(0,10)] + list(string.ascii_lowercase)
 mean_eigenvectors = pc_analyzer.calculate_mean(train_data, category_order)
 train_x, train_y = process_data().process_data(train_data, mean_eigenvectors)
