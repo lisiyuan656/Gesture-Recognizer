@@ -6,7 +6,7 @@ from preprocessing.process_data import process_data
 from feature import pc_analyzer
 
 # Load and preprocess data
-data = ImageLoader().getData(5)
+data = ImageLoader().getData(1)
 data_size = len(data)
 data = img_scaler.scaleDataset(data) # rescale the images
 data = noise_remover.Gaussian_filter(data, 3) # blur the images

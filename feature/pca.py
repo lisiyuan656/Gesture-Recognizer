@@ -20,11 +20,11 @@ class PCA(object):
         MAX_NUM_EIGVECTS = 15
         orig_basisDim = self.basisDim # original basis dimension
         self.basisDim = MAX_NUM_EIGVECTS
-        means = []
+        means = -1
         num = 0 # number of images processed
         for img in train_category:
             eigVects = self.getEigVecs(img)
-            if not means:
+            if means == -1:
                 means = eigVects
             else:
                 for i in range(0,MAX_NUM_EIGVECTS):
