@@ -1,6 +1,6 @@
 import random
 import string
-from img_loading import ImageLoader
+from util.img_loading import ImageLoader
 from preprocessing import noise_remover, img_scaler, segmenter
 from preprocessing.process_data import process_data
 from feature import pc_analyzer
