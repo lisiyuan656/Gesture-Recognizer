@@ -1,5 +1,5 @@
 import neurolab as nl
-import numpy as np
+from neurolab.train import train_gd
 
 class NeuralNet():
     """
@@ -19,6 +19,7 @@ class NeuralNet():
     thres -- Stop training if this threshold is reached
     """
     def train(self, train_patts, train_outs, epochs, thres):
+        self.net.trainf = train_gd
         error = self.net.train(train_patts, train_outs, epochs=epochs, show=1, goal=thres)
         return error
     """ Wrapper for Neurolab's sim method

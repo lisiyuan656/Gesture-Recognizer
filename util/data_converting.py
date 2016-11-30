@@ -7,6 +7,9 @@ class DataConverter(object):
     which have value of 1. Label to index mapping is as follows:
         Digits 0-9 map to indices 0-9
         Letters a-z map to indices 10-35
-    """
-    def vectorize_labels(self, labels):
-        return
+    """ # Already implemented in process_label
+#     def vectorize_labels(self, labels):
+#         vectors = []
+#         for label in labels:
+#             vector = [0]*36
+#         return vectors
