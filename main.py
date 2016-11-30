@@ -17,24 +17,21 @@ data_size = len(data)
 basisDim = 15
 data = img_scaler.scaleDataset(data) # rescale the images
 data = noise_remover.Gaussian_filter(data, 3) # blur the images
-binData = segmenter.binarizeSet(data) # segment the images
+data = segmenter.binarizeSet(data) # segment the images
 # Shuffle data and split into training and test
 random.shuffle(data)
-train_data = numpy.array([])
+train_data = data
 train_data_size = data_size
-image_size = data[0][0].size
-for datapoint in data:
-    train_data = numpy.append(train_data, datapoint[0].reshape(1, image_size))
-
-
 print "Finish preprocessing..."
 #train_data = data[0:train_data_size]
 #test_data = data[train_data_size:]
 # Initialize features in training set
+"""
 category_order = [str(i) for i in range(0,10)] + list(string.ascii_lowercase)
 mean_eigenvectors = pc_analyzer.calculate_mean(train_data, category_order)
 mean_eigenvectors = numpy.asarray(mean_eigenvectors)
-train_x, train_y = process_data(train_data, basisDim, mean_eigenvectors)
+"""
+train_x, train_y = process_data(train_data)
 train_x = train_x.reshape(train_data_size, 36*basisDim+7+1)
 train_x = train_x[:, 36*basisDim:]
 train_y = train_y.reshape(train_data_size, 1)
