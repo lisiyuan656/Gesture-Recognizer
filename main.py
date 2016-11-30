@@ -24,8 +24,8 @@ category_order = [str(i) for i in range(0,10)] + list(string.ascii_lowercase)
 mean_eigenvectors = pc_analyzer.calculate_mean(train_data, category_order)
 mean_eigenvectors = numpy.asarray(mean_eigenvectors)
 train_x, train_y = process_data(train_data, basisDim, mean_eigenvectors)
-train_x = train_x.reshape(len(train_x), 1)
-train_y = train_y.reshape(len(train_y), 1)
+train_x = train_x.reshape(train_data_size, 36*basisDim+7+1)
+train_y = train_y.reshape(train_data_size, 36)
 # Initialize and train neural net
 input_size = 36*basisDim + 7 + 1
 nn = NeuralNet([input_size,36])
