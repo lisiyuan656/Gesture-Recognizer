@@ -4,7 +4,7 @@ from util.img_loading import ImageLoader
 from preprocessing import noise_remover, img_scaler, segmenter
 from preprocessing.process_data import process_data
 from feature import pc_analyzer
-from neural_net_wrapper import NeuralNet
+from learning.neural_net_wrapper import NeuralNet
 import numpy
 
 # Load and preprocess data
