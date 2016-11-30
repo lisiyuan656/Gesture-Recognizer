@@ -4,7 +4,8 @@ from util.img_loading import ImageLoader
 from preprocessing import noise_remover, img_scaler, segmenter
 from preprocessing.process_data import process_data
 from feature import pc_analyzer
-from learning.neural_net_wrapper import NeuralNet
+# from learning.neural_net_wrapper import NeuralNet
+from learning.knn_wrapper import KNNClassifier
 import numpy
 
 # Load and preprocess data
@@ -26,8 +27,11 @@ mean_eigenvectors = numpy.asarray(mean_eigenvectors)
 train_x, train_y = process_data(train_data, basisDim, mean_eigenvectors)
 train_x = train_x.reshape(train_data_size, 36*basisDim+7+1)
 train_y = train_y.reshape(train_data_size, 36)
-# Initialize and train neural net
-input_size = 36*basisDim + 7 + 1
-nn = NeuralNet([input_size,30,36])
-error = nn.train(train_x, train_y, 5, 0.05)
-#output = nn.predict([test_data[i,0] for i in range(0,data_size/4)])
+# Learn to recognize gestures
+knn = KNNClassifier()
+knn.train(train_x, [train_data[i,0] for i in range(0,train_data_size)])
+output = knn.predict(test_data)
+# input_size = 36*basisDim + 7 + 1
+# nn = NeuralNet([input_size,30,36])
+# error = nn.train(train_x, train_y, 5, 0.05)
+# output = nn.predict([test_data[i,0] for i in range(0,data_size/4)])
