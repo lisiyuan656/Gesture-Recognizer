@@ -14,6 +14,7 @@ from pybrain.utilities           import percentError
 from pybrain.structure.modules.svmunit        import SVMUnit
 from pybrain.supervised.trainers.svmtrainer   import SVMTrainer
 
+
 # Load and preprocess data
 data = ImageLoader().getData(1)
 data_size = len(data)
