@@ -10,14 +10,14 @@ from learning.nn_pybrain import nn_pybrain
 from learning.knn_wrapper import KNNClassifier
 from pybrain.datasets import ClassificationDataSet
 import numpy
-from pybrain.utilities           import percentError
+from pybrain.utilities import percentError
 
 # Load and preprocess data
 data = ImageLoader().getData(1)
 data_size = len(data)
-basisDim = 10
+basisDim = 8
 data = img_scaler.scaleDataset(data) # rescale the images
-data = resize_wrapper(data, 4)
+data = resize_wrapper(data, 8)
 data = noise_remover.Gaussian_filter(data, 3) # blur the images
 data = segmenter.binarizeSet(data) # segment the images
 
@@ -25,6 +25,7 @@ data = segmenter.binarizeSet(data) # segment the images
 random.shuffle(data)
 train_data = data
 train_data_size = data_size
+num_minmax = 8
 print "Finish preprocessing..."
 
 category_order = [str(i) for i in range(0,10)] + list(string.ascii_lowercase)
@@ -33,8 +34,8 @@ mean_eigenvectors = numpy.asarray(mean_eigenvectors)
 
 
 train_x, train_y = process_data(train_data, basisDim, mean_eigenvectors)
-train_x = train_x.reshape(train_data_size, 36*basisDim+8)
-#train_x = train_x[:, 36*basisDim:]
+train_x = train_x.reshape(train_data_size, 36*basisDim+7+1)
+#train_x = train_x[:, 36*basisDim:-1]
 train_y = train_y.reshape(train_data_size, 1)
 input_size = 36*basisDim + 7 + 1
 #input_size = img_size
@@ -53,7 +54,7 @@ for n in xrange(0, trndata_temp.getLength()):
 trndata._convertToOneOfMany()
 tstdata._convertToOneOfMany()
 # Classify using feedforward neural nets
-nn = nn_pybrain([input_size, output_size])
+nn = nn_pybrain([input_size, input_size/3*2+output_size, output_size])
 nn.enroll(trndata)
 print "Begin training neural nets..."
 epochs = 400
