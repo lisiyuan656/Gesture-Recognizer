@@ -11,15 +11,17 @@ from learning.knn_wrapper import KNNClassifier
 from pybrain.datasets import ClassificationDataSet
 import numpy
 from pybrain.utilities           import percentError
+from pybrain.structure.modules.svmunit        import SVMUnit
+from pybrain.supervised.trainers.svmtrainer   import SVMTrainer
 
 # Load and preprocess data
 data = ImageLoader().getData(1)
 data_size = len(data)
 basisDim = 8
 data = img_scaler.scaleDataset(data) # rescale the images
-data = resize_wrapper(data, 8)
+data = resize_wrapper(data, 15)
 data = noise_remover.Gaussian_filter(data, 3) # blur the images
-data = segmenter.binarizeSet(data) # segment the images
+#data = segmenter.binarizeSet(data) # segment the images
 
 # Shuffle data and split into training and test
 random.shuffle(data)
@@ -31,14 +33,13 @@ print "Finish preprocessing..."
 category_order = [str(i) for i in range(0,10)] + list(string.ascii_lowercase)
 mean_eigenvectors = pc_analyzer.calculate_mean(train_data, category_order)
 mean_eigenvectors = numpy.asarray(mean_eigenvectors)
-
-
+img_size = train_data[0][0].size
 train_x, train_y = process_data(train_data, basisDim, mean_eigenvectors)
-train_x = train_x.reshape(train_data_size, 36*basisDim+7+1)
+train_x = train_x.reshape(train_data_size, img_size)
 #train_x = train_x[:, 36*basisDim:-1]
 train_y = train_y.reshape(train_data_size, 1)
-input_size = 36*basisDim + 7 + 1
-#input_size = img_size
+#input_size = 36*basisDim + 7 + 1
+input_size = img_size
 output_size = 36
 train_dataset_pybrain = ClassificationDataSet(input_size, nb_classes=36, class_labels=category_order)
 train_dataset_pybrain.setField('input', train_x)
@@ -53,6 +54,7 @@ for n in xrange(0, trndata_temp.getLength()):
     trndata.addSample( trndata_temp.getSample(n)[0], trndata_temp.getSample(n)[1] )
 trndata._convertToOneOfMany()
 tstdata._convertToOneOfMany()
+"""
 # Classify using feedforward neural nets
 nn = nn_pybrain([input_size, input_size/3*2+output_size, output_size])
 nn.enroll(trndata)
@@ -64,6 +66,10 @@ for i in range(epochs):
     tstresult = percentError(nn.trainer.testOnClassData(dataset=tstdata), tstdata['class'])
     print "epoch: %4d" % nn.trainer.totalepochs, "train error: %5.2f%%" % trnresult, "test error: %5.2f%%" % tstresult
 
+"""
+# try svm
+svm = SVMUnit()
+trainer = SVMTrainer( svm, trndata )
 """
 # Learn to recognize gestures
 knn = KNNClassifier()
