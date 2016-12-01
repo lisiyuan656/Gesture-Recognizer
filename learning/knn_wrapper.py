@@ -3,7 +3,7 @@ from sklearn.neighbors import KNeighborsClassifier
 class KNNClassifier(object):
     ''' Wrapper for sklearn KNN '''
     def __init__(self):
-        self.classifier = KNeighborsClassifier()
+        self.classifier = KNeighborsClassifier(n_neighbors=15)
     """ Wrapper for KNeighborsClassifier.fit() """
     def train(self, data, labels):
         self.classifier.fit(data, labels)

@@ -24,3 +24,8 @@ class ImgSegmenter():
         kernel = numpy.ones((3,3), numpy.uint8)
         newImg = cv2.morphologyEx(img, cv2.MORPH_CLOSE, kernel)
         return newImg
+    def backgroundSubtract2(self, img, background):
+        diffImg = numpy.absolute(numpy.subtract(img, background)).astype('uint8')
+        _,binImg = cv2.threshold(diffImg, self.diffThres, 255, cv2.THRESH_BINARY)
+        binImg = self.removeNoise(binImg)
+        return binImg
